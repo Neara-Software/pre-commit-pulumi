@@ -1,0 +1,7 @@
+- id: pulumi-config
+  name: pulumi-config
+  description: Format pulumi-config files
+  entry: pulumi-config
+  language: python
+  require_serial: true
+  files: Pulumi\..+.yaml$
