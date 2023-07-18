@@ -58,5 +58,12 @@ def main():
         directory, stack = get_stack(filename)
         remove_config_procs.append(remove_config(directory, stack))
     # Wait for all the commands to finish
+    reports = []
     for proc in remove_config_procs:
         proc.wait()
+        if proc.returncode != 0:
+            reports.append(proc.stderr.read().decode("utf-8"))
+            reports.append(proc.stdout.read().decode("utf-8"))
+    if reports:
+        print("\n".join(reports))
+        exit(-1)
